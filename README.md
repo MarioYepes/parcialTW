@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sistema de Autenticacion con OTP
 
 Base del backend para el proyecto academico de autenticacion en dos pasos.
@@ -47,3 +48,7 @@ Esta primera etapa establece la estructura y los contratos iniciales. Los
 endpoints de autenticacion, la validacion JWT, el envio SMTP, el rate limiting
 y las pruebas se implementaran en las siguientes etapas. No configurar
 credenciales reales en `.env.example`; usar `.env` local y no versionarlo.
+=======
+# parcialTW
+login con verificacion por correo electronico y 
+>>>>>>> 396b3804e5f485cf958e5f8efae13160d55d2bed
