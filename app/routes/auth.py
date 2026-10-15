@@ -44,7 +44,13 @@ def login(request: Request, payload: UserLogin, db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Credenciales invalidas")
 
     _entry, code = create_otp_entry(db, user.id)
-    send_otp_email(user.email, code)
+    try:
+        send_otp_email(user.email, code)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"No se pudo enviar el correo OTP: {exc}",
+        )
     return {"message": "Se ha enviado un codigo OTP a tu correo"}
 
 
@@ -81,7 +87,13 @@ def resend_otp(request: Request, payload: OTPResend, db: Session = Depends(get_d
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuario no encontrado")
 
     _entry, code = create_otp_entry(db, user.id)
-    send_otp_email(user.email, code)
+    try:
+        send_otp_email(user.email, code)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"No se pudo enviar el correo OTP: {exc}",
+        )
     return {"message": "Se ha reenviado el codigo OTP"}
 
 
