@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: fastapi-otp-auth
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./auth.db
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: OTP_EXPIRE_MINUTES
+        value: "15"
+      - key: SMTP_HOST
+        value: smtp.example.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_FROM_EMAIL
+        value: no-reply@example.com
