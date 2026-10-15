@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-# Sistema de Autenticacion con OTP
+# Sistema de Autenticacion con OTP (FastAPI)
 
-Base del backend para el proyecto academico de autenticacion en dos pasos.
-El repositorio contiene la estructura inicial de FastAPI, la configuracion de
-SQLAlchemy/SQLite, modelos, esquemas y espacios para rutas y servicios.
+Backend completo para autenticacion en dos pasos con FastAPI, SQLAlchemy/SQLite,
+JWT y codigos OTP enviados por correo.
 
 ## Requisitos
 
@@ -28,27 +26,40 @@ en `http://127.0.0.1:8000/health`.
 
 ```text
 app/
-  main.py
   config.py
   database.py
+  limiter.py
+  middleware.py
   models.py
   schemas.py
-  middleware.py
+  security.py
   routes/
     auth.py
     users.py
   services/
     email_service.py
     otp_service.py
+main.py
+tests/
 ```
 
-## Estado
+## Variables de entorno
 
-Esta primera etapa establece la estructura y los contratos iniciales. Los
-endpoints de autenticacion, la validacion JWT, el envio SMTP, el rate limiting
-y las pruebas se implementaran en las siguientes etapas. No configurar
-credenciales reales en `.env.example`; usar `.env` local y no versionarlo.
-=======
-# parcialTW
-login con verificacion por correo electronico y 
->>>>>>> 396b3804e5f485cf958e5f8efae13160d55d2bed
+Copia `.env.example` a `.env` y completa los valores (especialmente `JWT_SECRET_KEY`
+y las credenciales SMTP). En produccion configuralas en el panel del proveedor.
+
+## Pruebas
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+pytest -q
+```
+
+## Despliegue
+
+Para Render/Railway se incluyen `Procfile`, `runtime.txt` y `render.yaml`.
+Comando de inicio:
+
+```text
+uvicorn main:app --host 0.0.0.0 --port $PORT
+```
