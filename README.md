@@ -15,7 +15,7 @@ py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 Copy-Item .env.example .env
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 La API queda disponible en `http://127.0.0.1:8000`. La documentacion interactiva
