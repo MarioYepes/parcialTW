@@ -35,5 +35,5 @@ app.include_router(users.router, prefix="/users", tags=["Usuarios"])
 
 @app.get("/health", tags=["Estado"])
 def health_check() -> dict[str, str]:
-    """Confirma que la API esta respondiendo."""
+    """Confirma que la API nos esta respondiendo."""
     return {"status": "ok"}
